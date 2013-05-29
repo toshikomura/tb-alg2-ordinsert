@@ -1,0 +1,130 @@
+FUNÇÃO:  Main.
+
+	Recebe: (v) O arquivo com o vetor a ser ordenado.
+
+	Objtivo: 1 - Ler o arquivo e repassar para um vetor.
+				2 - Ordenar o vetor por "Ordenação por Inserção" ou "QuickSort".
+				3 - Gravar o vetor ordenado para um arquivo.			
+	
+	Devolve: (v) Um arquvio do vetor ordenado.
+
+	Explicação: 1 - Declarado "vetor" Vetor que vai receber o valores do arquivo para ordenação.
+										"  " Ponteiro para o arquivo de entrada.
+										"  " Ponteiro para o arquivo de saida.
+
+
+							(*Necessita termino *)
+
+
+
+
+FUNÇÃO: QuickInsert.
+
+	Recebe: (v) O vetor a ser ordenado.
+			  (a) e (b) Determinando o tamanho do vetor.
+	
+	Objetivo: 1 - Dependendo do tamanho do vetor de entrada, ela escolhe o melhor algoritimo para ordenar o vetor.
+				 2 - Recursivamente ela ordena o vetor pelo melhor algoritimo.
+
+	Devolve: (v) O vetor ordenado.
+
+	Explicação: 1 - Declarado "n" e "q" Indices do pivô atualizado no vetor.
+					2 - Se o tamanho do vetor for menor que k "if ((b - a + 1) < k)".
+					2.1 - Faz a "Ordenação por Inserção" se não faz o "QuickSort".
+					3 - Escolher o pivô e atualizar o vetor a partir deles "m = Particiona(v, a, b); q = Particiona(v, a, b); ".
+					4 - Se na instância exite um vetor "if (a < b)".
+					4.1 - Chamadas recursivas para os elementos a esquerda e direita do pivô "QuickInsert(v, a, m-1); QuickInsert(v, q+1, b);".
+				
+
+
+FUNÇÃO: Insertion.
+
+	Recebe: (v) O vetor a ser ordenado.
+			  (a) e (b) Determinando o tamanho do vetor.
+
+	Objetivo: Ordenar o vetor pelo algoritimo de "Ordenação por Inserção" recursivamente.
+
+	Devolve: (v) O vetor ordenado pelo algoritimo de "Ordenação por Inserção".
+
+	Explicação: 1 - Critério de parada "if (a > b - 1)".
+					2 - Chamada recursiva com o vetor menor "Insertion(v, a, b - 1);".
+					3 - Chamada da função Insere "Insere(v, a, b);" para comparar e trocar os elementos para todas as instâncias na memória, 
+
+
+
+FUNÇÃO: Insere.
+
+	Recebe: (v) O vetor a ser ordenado.
+			  (a) e (b) Determinando o tamanho do vetor (na instância).
+
+	Objetivo: 1 - Busca um elemento menor que o ultimo elemento do vetor (na instância). 
+				 2 - Comparar e trocar os elementos (se necessário).
+
+	Devovle: (v) O vetor previamente ordenado (até a instância).
+
+	Explicação: 1 - Declarado "p": Elemento menor que o de referência. 
+									 "i": Indice do último elemento do vetor (na instância).
+					2 - Buscar elemento menor que o utlimo do vetor (na instância) "p = Busca(v[b], v, a, b - 1);".
+					3 - Garantindo que o pivô não é negativo "if (p >= 0)".					
+					4 - Enquanto não chegar no ultimo indice do vetor "while (i >= (p + 1))".
+					4.1 - Troca os elementos "Troca(v, i, i - 1);".
+					4.2 - Diminui o indice de i"i--;". 
+
+
+
+FUNÇÃO: Busca
+
+	Recebe: (x) Valor de referência (Último valor do vetor na instância). 
+			  (v) O vetor a ser ordenado.
+			  (a) e (b) Determinando o tamanho do vetor (na instância).
+
+	Objetivo: Encontrar um número menor que o valor de referência no vetor (na instância).
+
+	Devolve: (b) Elemento menor que o elemento de referência.
+
+	Explicação: 1 - Declarado "i" Indice do ultimo elemento do vetor (na instância).
+					2 - Enquanto ......   "while (i >= a)".
+					2.1 - Se ...... Senão ..... "if (a > i)""else if (x < v[i])".
+										
+
+									(*necessita termino*)
+
+
+
+
+
+FUNÇÃO: Troca.
+
+	Recebe: (v) O vetor a ser ordenado.
+			  (a) e (b) Indices dos elementos a serem trocados (Indice de (a) menor que (b) e v[a]>v[b] ).
+
+	Objetivo: Trocar dois elementos do vetor.
+
+	Devolve: (v) O vetor com os elementos trocados.
+
+	Explicação: 1 - É declarado "temp".
+					2 - "temp" recebe o valor de v[a], que é maior que v[b].
+					3 - v[a] recebeo o menor valor no momento, que é v[b].
+					4 - Finalmente v[b] recebe o maior valor.
+
+
+
+FUNÇÃO: Particiona.
+
+	Recebe: (v) O vetor a ser ordenado.
+			  (a) e (b) Determinando o tamanho do vetor (na instância).
+
+	Objetivo: 1 - Escolher um número para ser o pivô (no caso primeiro elemento do vetor na instância).
+				 2 - A partir desse número encontrar no vetor os número menores que ele, tendo assim, números a esquerda menores que o pivô, e a direita maiores que o pivô.
+				 3 - E essa função nas chamadas recusrsivas, vai quebrando e parcialmente ordenando o vetor.
+
+	Devolve: (iPivot) Indice do pivô atualizado.
+
+	Explicação: 1 - Declarado "pivot=v[a];" Pivô recebendo o primeiro elemento do vetor (na instância).
+									  "iPivot=a;" Indice do pivô.
+									  "j=a+1;" j Recebendo o segundo indice do vetor (na instância).
+					2 - Enquanto j não chegar no final do vetor "while (j <= b)".
+					2.1 - Se o elemento for menor ou igual que o pivô "if (v[j] <= pivot)".
+					2.1.1 - Coloca o elemnto atrás do pivô "Troca(v, iPivot, j);".
+					2.1.2 - Atualiza o indice do pivô "iPivot = iPivot + 1;".
+
